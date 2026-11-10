@@ -1,9 +1,16 @@
-
 const mongoose = require("mongoose");
 
 const connectDB = async () => {
     try {
-        await mongoose.connect(process.env.MONGODB_URI);
+        const mongoURI = process.env.MONGODB_URI;
+
+        if (!mongoURI) {
+            throw new Error("MONGODB_URI is missing in Render Environment!");
+        }
+
+        await mongoose.connect(mongoURI, {
+            serverSelectionTimeoutMS: 15000
+        });
 
         console.log("MongoDB Connected Successfully!");
         console.log("Database:", mongoose.connection.name);
