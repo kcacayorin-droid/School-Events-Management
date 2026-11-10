@@ -1,70 +1,270 @@
 
-<!-- SCHOOL ACTIVITIES -->
-<section class="content-section" id="activitiesListSection">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Events Management</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
 
-    <div class="section-heading">
-        <div>
-            <h2>School Activities</h2>
-            <p>Manage and organize all school activities in one place.</p>
+<div class="app-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">S</div>
+            <div>
+                <h2>School Events</h2>
+                <span>Management System</span>
+            </div>
         </div>
-    </div>
 
-    <!-- ADD ACTIVITY -->
-    <div class="form-container">
-        <h3>Add New Activity</h3>
+        <p class="menu-label">MENU</p>
 
-        <form id="activityForm" class="event-form">
+        <nav class="sidebar-nav">
+            <a href="#dashboardSection" class="nav-link active">
+                <span>⌂</span> Dashboard
+            </a>
 
-            <div class="form-grid">
+            <a href="#eventsSection" class="nav-link">
+                <span>▣</span> Upcoming Events
+            </a>
 
-                <div class="form-group">
-                    <label for="activityTitle">Activity Title</label>
-                    <input type="text" id="activityTitle"
-                        placeholder="Enter activity title" required>
+            <a href="#manageSection" class="nav-link">
+                <span>＋</span> Manage Events
+            </a>
+
+            <a href="#activitiesListSection" class="nav-link">
+                <span>◷</span> Activities
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <p>School Events Management</p>
+            <span>Stay organized. Stay updated.</span>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOP BAR -->
+        <header class="topbar">
+            <div>
+                <p class="topbar-label">STUDENT PORTAL</p>
+                <h2>Dashboard</h2>
+            </div>
+
+            <div class="profile">
+                <div class="profile-icon">S</div>
+                <span id="userName">Student</span>
+            </div>
+        </header>
+
+        <!-- WELCOME -->
+        <section class="welcome-section" id="dashboardSection">
+            <div>
+                <p class="welcome-label">WELCOME BACK!</p>
+                <h1>Hello, <span id="welcomeName">Student</span>!</h1>
+                <p>Manage your school events and activities in one place.</p>
+            </div>
+
+            <div class="welcome-icon">📅</div>
+        </section>
+
+        <!-- DASHBOARD OVERVIEW -->
+        <section class="content-section">
+            <div class="section-heading">
+                <div>
+                    <h2>Dashboard Overview</h2>
+                    <p>Quick access to your school events.</p>
+                </div>
+            </div>
+
+            <div class="dashboard">
+
+                <div class="card overview-card">
+                    <div class="card-icon blue-icon">📅</div>
+                    <h3>Upcoming Events</h3>
+                    <p>View your upcoming school events.</p>
+
+                    <button id="viewEventsBtn" type="button">
+                        View Events →
+                    </button>
                 </div>
 
-                <div class="form-group">
-                    <label for="activityDate">Activity Date</label>
-                    <input type="date" id="activityDate" required>
+                <div class="card overview-card">
+                    <div class="card-icon purple-icon">✏️</div>
+                    <h3>Manage Events</h3>
+                    <p>Create and organize school activities.</p>
+
+                    <button id="manageEventsBtn" type="button">
+                        Manage Events →
+                    </button>
                 </div>
 
-                <div class="form-group full-width">
-                    <label for="activityDescription">Description</label>
-                    <textarea id="activityDescription"
-                        placeholder="Enter activity description"></textarea>
-                </div>
+                <div class="card overview-card" id="activitiesSection">
+                    <div class="card-icon orange-icon">📋</div>
+                    <h3>School Activities</h3>
+                    <p>Keep track of school activities.</p>
 
-                <div class="form-group">
-                    <label for="activityLocation">Location</label>
-                    <input type="text" id="activityLocation"
-                        placeholder="Enter location" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="activityOrganizer">Organizer</label>
-                    <input type="text" id="activityOrganizer"
-                        placeholder="Enter organizer name">
+                    <button id="activitiesBtn" type="button">
+                        View Activities →
+                    </button>
                 </div>
 
             </div>
+        </section>
 
-            <button type="submit" class="submit-btn">
-                + Add Activity
-            </button>
+        <!-- ADD EVENT -->
+        <section class="content-section" id="manageSection">
+            <div class="section-heading">
+                <div>
+                    <h2>Add New School Event</h2>
+                    <p>Fill in the details to create a new event.</p>
+                </div>
+            </div>
 
-        </form>
-    </div>
+            <form id="eventForm" class="event-form">
+                <div class="form-grid">
 
-    <!-- SEARCH ACTIVITIES -->
-    <div class="activity-search">
-        <input type="text" id="searchActivity"
-            class="search-input"
-            placeholder="Search activities by title or location...">
-    </div>
+                    <div class="form-group">
+                        <label for="eventTitle">Event Title</label>
+                        <input type="text" id="eventTitle"
+                            placeholder="Enter event title" required>
+                    </div>
 
-    <!-- ACTIVITY LIST -->
-    <div id="activityList" class="event-list">
-        <p>Loading activities...</p>
-    </div>
+                    <div class="form-group">
+                        <label for="eventDate">Event Date</label>
+                        <input type="date" id="eventDate" required>
+                    </div>
 
-</section>
+                    <div class="form-group full-width">
+                        <label for="eventDescription">Event Description</label>
+                        <textarea id="eventDescription"
+                            placeholder="Enter event description"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="eventLocation">Event Location</label>
+                        <input type="text" id="eventLocation"
+                            placeholder="Enter event location" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="eventOrganizer">Organizer Name</label>
+                        <input type="text" id="eventOrganizer"
+                            placeholder="Enter organizer name">
+                    </div>
+
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    + Add Event
+                </button>
+            </form>
+        </section>
+
+        <!-- UPCOMING EVENTS -->
+        <section class="content-section" id="eventsSection">
+            <div class="section-heading">
+                <div>
+                    <h2>Upcoming School Events</h2>
+                    <p>Browse and manage your school events.</p>
+                </div>
+            </div>
+
+            <input type="text" id="searchEvent"
+                class="search-input"
+                placeholder="Search events by title or location...">
+
+            <div id="eventList" class="event-list">
+                <p>Loading events...</p>
+            </div>
+        </section>
+
+        <!-- SCHOOL ACTIVITIES -->
+        <section class="content-section" id="activitiesListSection">
+
+            <div class="section-heading">
+                <div>
+                    <h2>School Activities</h2>
+                    <p>Manage and organize all school activities in one place.</p>
+                </div>
+            </div>
+
+            <!-- ADD ACTIVITY -->
+            <div class="form-container">
+                <h3>Add New Activity</h3>
+
+                <form id="activityForm" class="event-form">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label for="activityTitle">Activity Title</label>
+                            <input type="text" id="activityTitle"
+                                placeholder="Enter activity title" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="activityDate">Activity Date</label>
+                            <input type="date" id="activityDate" required>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="activityDescription">Description</label>
+                            <textarea id="activityDescription"
+                                placeholder="Enter activity description"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="activityLocation">Location</label>
+                            <input type="text" id="activityLocation"
+                                placeholder="Enter location" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="activityOrganizer">Organizer</label>
+                            <input type="text" id="activityOrganizer"
+                                placeholder="Enter organizer name">
+                        </div>
+
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        + Add Activity
+                    </button>
+
+                </form>
+            </div>
+
+            <!-- SEARCH ACTIVITIES -->
+            <div class="activity-search">
+                <input type="text" id="searchActivity"
+                    class="search-input"
+                    placeholder="Search activities by title or location...">
+            </div>
+
+            <!-- ACTIVITY LIST -->
+            <div id="activityList" class="event-list">
+                <p>Loading activities...</p>
+            </div>
+
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <p>© 2026 School Events Management System</p>
+            <button id="logoutBtn" type="button">Logout</button>
+        </footer>
+
+    </main>
+</div>
+
+<script src="./script.js"></script>
+
+</body>
+</html>

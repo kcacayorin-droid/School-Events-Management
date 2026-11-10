@@ -16,7 +16,11 @@ body {
     font-family: 'Segoe UI', Arial, sans-serif;
     background: #f4f7fc;
     color: #26344a;
-    line-height: 1.5;
+    line-height: 1.6;
+}
+
+button, input, textarea {
+    font-family: inherit;
 }
 
 /* =====================================
@@ -32,6 +36,7 @@ body {
 ===================================== */
 .sidebar {
     width: 255px;
+    min-width: 255px;
     background: #17345f;
     color: white;
     padding: 28px 20px;
@@ -68,7 +73,6 @@ body {
 .brand h2 {
     font-size: 17px;
     color: white;
-    margin: 0;
 }
 
 .brand span {
@@ -319,7 +323,6 @@ button {
     padding: 11px 17px;
     font-size: 13px;
     font-weight: 600;
-    font-family: inherit;
     transition: 0.2s;
 }
 
@@ -351,14 +354,6 @@ button:focus-visible {
 /* =====================================
    EVENT AND ACTIVITY FORMS
 ===================================== */
-.event-form {
-    background: white;
-    border: 1px solid #e9eef5;
-    border-radius: 15px;
-    padding: 28px;
-    box-shadow: 0 4px 15px rgba(31,56,88,0.04);
-}
-
 .form-container {
     margin-bottom: 22px;
 }
@@ -367,6 +362,14 @@ button:focus-visible {
     color: #24436e;
     font-size: 17px;
     margin-bottom: 15px;
+}
+
+.event-form {
+    background: white;
+    border: 1px solid #e9eef5;
+    border-radius: 15px;
+    padding: 28px;
+    box-shadow: 0 4px 15px rgba(31,56,88,0.04);
 }
 
 .form-grid {
@@ -399,7 +402,6 @@ textarea {
     border: 1px solid #dce4ef;
     border-radius: 8px;
     background: #fbfcff;
-    font-family: inherit;
     font-size: 13px;
     outline: none;
     color: #26344a;
@@ -432,12 +434,7 @@ textarea {
     border: 1px solid #dce4ef;
     border-radius: 8px;
     font-size: 14px;
-    outline: none;
     display: block;
-}
-
-.search-input:focus {
-    border-color: #477db7;
 }
 
 /* =====================================
@@ -469,7 +466,6 @@ textarea {
     color: #77869b;
     font-size: 13px;
     margin-bottom: 8px;
-    line-height: 1.5;
 }
 
 .event-list button {
@@ -503,6 +499,7 @@ textarea {
 
 #logoutBtn:hover {
     background: #c83e3e;
+    color: white;
 }
 
 /* =====================================
@@ -564,6 +561,7 @@ body:has(#registerForm) .container {
     .sidebar {
         position: relative;
         width: 100%;
+        min-width: 0;
         height: auto;
         padding: 18px;
     }
@@ -611,7 +609,6 @@ body:has(#registerForm) .container {
     }
 
     .footer {
-        gap: 15px;
         flex-wrap: wrap;
     }
 }
