@@ -6,30 +6,164 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - School Events Management</title>
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #eaf0fa, #dce6f5);
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        .login-container {
+            width: 90%;
+            max-width: 420px;
+            background: white;
+            padding: 40px 35px;
+            border-radius: 18px;
+            box-shadow: 0 10px 35px rgba(25, 45, 80, 0.12);
+            text-align: center;
+        }
+
+        .login-icon {
+            width: 65px;
+            height: 65px;
+            margin: 0 auto 18px;
+            background: #e8efff;
+            color: #244a85;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+        }
+
+        .login-container h1 {
+            color: #243b60;
+            font-size: 27px;
+            margin-bottom: 8px;
+        }
+
+        .login-subtitle {
+            color: #78869b;
+            margin-bottom: 28px;
+            font-size: 14px;
+        }
+
+        #loginForm {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        #loginForm input {
+            width: 100%;
+            padding: 14px 15px;
+            border: 1px solid #dce3ef;
+            border-radius: 9px;
+            outline: none;
+            font-size: 14px;
+            box-sizing: border-box;
+            background: #f9fbff;
+        }
+
+        #loginForm input:focus {
+            border-color: #315b9a;
+            box-shadow: 0 0 0 3px rgba(49, 91, 154, 0.10);
+        }
+
+        #loginForm button {
+            width: 100%;
+            padding: 14px;
+            background: #294d82;
+            color: white;
+            border: none;
+            border-radius: 9px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        #loginForm button:hover {
+            background: #1d3965;
+        }
+
+        .register-text {
+            margin-top: 24px;
+            color: #78869b;
+            font-size: 14px;
+        }
+
+        .register-text a,
+        .back-home {
+            color: #315b9a;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .register-text a:hover,
+        .back-home:hover {
+            text-decoration: underline;
+        }
+
+        .back-home {
+            display: inline-block;
+            margin-top: 22px;
+            font-size: 13px;
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 32px 22px;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-    <div class="container">
+    <div class="login-container">
+
+        <div class="login-icon">🏫</div>
+
         <h1>Welcome Back!</h1>
-        <p>Login to your account</p>
+        <p class="login-subtitle">
+            Login to your School Events Management account
+        </p>
 
         <form id="loginForm">
-            <input type="email" id="email" placeholder="Email Address" required>
-            <br><br>
 
-            <input type="password" id="password" placeholder="Password" required>
-            <br><br>
+            <input
+                type="email"
+                id="email"
+                placeholder="Email Address"
+                required
+            >
 
-            <button type="submit">Login</button>
+            <input
+                type="password"
+                id="password"
+                placeholder="Password"
+                required
+            >
+
+            <button type="submit">Login to Account</button>
+
         </form>
 
-        <p>Don't have an account?
+        <p class="register-text">
+            Don't have an account?
             <a href="register.html">Register here</a>
         </p>
 
-        <a href="index.html">Back to Home</a>
+        <a href="index.html" class="back-home">← Back to Home</a>
+
     </div>
 
     <script src="script.js"></script>
+
 </body>
 </html>
