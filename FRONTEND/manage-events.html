@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Events | School Events Management</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<div class="app-layout">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <img
+                src="./SBCI.PNG.webp"
+                alt="Subic Bay Colleges Logo"
+                style="width:65px; height:65px; object-fit:contain; background:white; border-radius:12px; padding:5px;"
+            >
+            <div>
+                <p class="topbar-label">SUBIC BAY COLLEGES (SBCI), INC.</p>
+                <h2>School Events</h2>
+                <span>Management System</span>
+            </div>
+        </div>
+
+        <p class="menu-label">MENU</p>
+
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-link"><span>⌂</span> Dashboard</a>
+            <a href="events.html" class="nav-link"><span>▣</span> Upcoming Events</a>
+            <a href="manage-events.html" class="nav-link active"><span>＋</span> Manage Events</a>
+            <a href="activities.html" class="nav-link"><span>◷</span> Activities</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <p>School Events Management</p>
+            <span>Stay organized. Stay updated.</span>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <div>
+                <p class="topbar-label">STUDENT PORTAL</p>
+                <h2>Manage Events</h2>
+            </div>
+            <div class="profile">
+                <div class="profile-icon">S</div>
+                <span id="userName">User</span>
+            </div>
+        </header>
+
+        <section class="welcome-section">
+            <div>
+                <p class="welcome-label">EVENT MANAGEMENT</p>
+                <h1>Manage School Events</h1>
+                <p>Add, update, search, and delete school events.</p>
+            </div>
+            <div class="welcome-icon">📅</div>
+        </section>
+
+        <section class="event-form">
+            <h2>Add New Event</h2>
+
+            <form id="eventForm">
+                <div class="form-grid">
+                    <input type="text" id="eventTitle" placeholder="Event Title" required>
+                    <input type="date" id="eventDate" required>
+                    <input type="text" id="eventLocation" placeholder="Location" required>
+                    <input type="text" id="eventOrganizer" placeholder="Organizer" required>
+                </div>
+
+                <textarea id="eventDescription" placeholder="Event Description" required></textarea>
+
+                <button type="submit">Add Event</button>
+            </form>
+        </section>
+
+        <section class="event-section">
+            <h2>Event List</h2>
+
+            <input
+                type="text"
+                id="searchEvent"
+                class="search-input"
+                placeholder="Search events..."
+            >
+
+            <div id="eventList" class="event-list"></div>
+        </section>
+
+        <footer class="footer">
+            <p>© 2026 School Events Management System</p>
+            <button id="logoutBtn" type="button">Logout</button>
+        </footer>
+    </main>
+
+</div>
+
+<script src="./script.js"></script>
+</body>
+</html>

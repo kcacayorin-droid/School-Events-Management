@@ -3,7 +3,10 @@ const API_URL = "https://school-events-backend.onrender.com/api/auth";
 const EVENTS_URL = "https://school-events-backend.onrender.com/api/events";
 const ACTIVITIES_URL = "https://school-events-backend.onrender.com/api/activities";
 
+// =====================================
 // REGISTER
+// =====================================
+
 const registerForm = document.getElementById("registerForm");
 
 if (registerForm) {
@@ -34,7 +37,10 @@ if (registerForm) {
     });
 }
 
+// =====================================
 // LOGIN
+// =====================================
+
 const loginForm = document.getElementById("loginForm");
 
 if (loginForm) {
@@ -66,7 +72,10 @@ if (loginForm) {
     });
 }
 
-// DASHBOARD USER
+// =====================================
+// USER SESSION
+// =====================================
+
 const userName = localStorage.getItem("userName");
 const token = localStorage.getItem("token");
 
@@ -85,7 +94,10 @@ if (userNameDisplay) {
     }
 }
 
+// =====================================
 // LOGOUT
+// =====================================
+
 const logoutBtn = document.getElementById("logoutBtn");
 
 if (logoutBtn) {
@@ -98,44 +110,14 @@ if (logoutBtn) {
     });
 }
 
-// DASHBOARD NAVIGATION
-document.getElementById("viewEventsBtn")?.addEventListener("click", function() {
-    document.getElementById("eventsSection")?.scrollIntoView({
-        behavior: "smooth"
-    });
-});
-
-document.getElementById("manageEventsBtn")?.addEventListener("click", function() {
-    document.getElementById("manageSection")?.scrollIntoView({
-        behavior: "smooth"
-    });
-});
-
-// VIEW ACTIVITIES BUTTON
-document.getElementById("activitiesBtn")?.addEventListener("click", function() {
-    document.getElementById("activitiesListSection")?.scrollIntoView({
-        behavior: "smooth"
-    });
-});
-
-// SIDEBAR ACTIVITIES LINK
-document.querySelector('a[href="#activitiesListSection"]')?.addEventListener("click", function(event) {
-    event.preventDefault();
-
-    document.getElementById("activitiesListSection")?.scrollIntoView({
-        behavior: "smooth"
-    });
-});
-
 // =====================================
-// EVENTS
+// LOAD EVENTS
 // =====================================
 
 const eventForm = document.getElementById("eventForm");
 const eventList = document.getElementById("eventList");
 const searchEvent = document.getElementById("searchEvent");
 
-// LOAD EVENTS
 async function loadEvents() {
     if (!eventList) return;
 
@@ -310,12 +292,14 @@ async function loadEvents() {
     }
 }
 
-// SEARCH EVENTS
 if (searchEvent) {
     searchEvent.addEventListener("input", loadEvents);
 }
 
+// =====================================
 // ADD EVENT
+// =====================================
+
 if (eventForm) {
     eventForm.addEventListener("submit", async function(event) {
         event.preventDefault();
@@ -365,14 +349,13 @@ if (eventForm) {
 }
 
 // =====================================
-// SCHOOL ACTIVITIES
+// LOAD ACTIVITIES
 // =====================================
 
 const activityForm = document.getElementById("activityForm");
 const activityList = document.getElementById("activityList");
 const searchActivity = document.getElementById("searchActivity");
 
-// LOAD ACTIVITIES
 async function loadActivities() {
     if (!activityList) return;
 
@@ -561,12 +544,18 @@ async function loadActivities() {
     }
 }
 
+// =====================================
 // SEARCH ACTIVITIES
+// =====================================
+
 if (searchActivity) {
     searchActivity.addEventListener("input", loadActivities);
 }
 
+// =====================================
 // ADD ACTIVITY
+// =====================================
+
 if (activityForm) {
     activityForm.addEventListener("submit", async function(event) {
         event.preventDefault();
@@ -615,6 +604,9 @@ if (activityForm) {
     });
 }
 
+// =====================================
 // INITIAL LOAD
+// =====================================
+
 loadEvents();
 loadActivities();

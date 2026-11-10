@@ -5,34 +5,190 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - School Events Management</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #091f42, #e8eef7);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .register-container {
+            width: 90%;
+            max-width: 450px;
+            background: white;
+            padding: 38px 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 35px rgba(25, 45, 80, 0.15);
+            text-align: center;
+        }
+
+        .school-logo {
+            width: 95px;
+            height: 95px;
+            object-fit: contain;
+            margin: 0 auto 12px;
+            display: block;
+        }
+
+        .school-name {
+            color: #294d82;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            margin-bottom: 22px;
+        }
+
+        .register-container h1 {
+            color: #243b60;
+            font-size: 27px;
+            margin-bottom: 8px;
+        }
+
+        .register-subtitle {
+            color: #78869b;
+            font-size: 14px;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        #registerForm {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        #registerForm input {
+            width: 100%;
+            padding: 14px 15px;
+            border: 1px solid #dce3ef;
+            border-radius: 9px;
+            outline: none;
+            font-size: 14px;
+            background: #f9fbff;
+        }
+
+        #registerForm input:focus {
+            border-color: #315b9a;
+            box-shadow: 0 0 0 3px rgba(49, 91, 154, 0.10);
+        }
+
+        #registerForm button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 5px;
+            background: #294d82;
+            color: white;
+            border: none;
+            border-radius: 9px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        #registerForm button:hover {
+            background: #1d3965;
+        }
+
+        .login-text {
+            margin-top: 23px;
+            color: #78869b;
+            font-size: 14px;
+        }
+
+        .login-text a,
+        .back-home {
+            color: #315b9a;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-text a:hover,
+        .back-home:hover {
+            text-decoration: underline;
+        }
+
+        .back-home {
+            display: inline-block;
+            margin-top: 18px;
+            font-size: 13px;
+        }
+
+        @media (max-width: 480px) {
+            .register-container {
+                padding: 30px 22px;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-    <div class="container">
+    <div class="register-container">
+
+        <img
+            src="./SBCI.PNG.webp"
+            alt="Subic Bay Colleges Logo"
+            class="school-logo"
+        >
+
+        <p class="school-name">
+            SUBIC BAY COLLEGES (SBCI), INC.
+        </p>
+
         <h1>Create Account</h1>
-        <p>Register to manage school events</p>
+
+        <p class="register-subtitle">
+            Join the School Events Management System
+        </p>
 
         <form id="registerForm">
-            <input type="text" id="name" placeholder="Full Name" required>
-            <br><br>
 
-            <input type="email" id="registerEmail" placeholder="Email Address" required>
-            <br><br>
+            <input
+                type="text"
+                id="name"
+                placeholder="Full Name"
+                required
+            >
 
-            <input type="password" id="registerPassword" placeholder="Password" required>
-            <br><br>
+            <input
+                type="email"
+                id="registerEmail"
+                placeholder="Email Address"
+                required
+            >
 
-            <button type="submit">Register</button>
+            <input
+                type="password"
+                id="registerPassword"
+                placeholder="Password"
+                required
+            >
+
+            <button type="submit">Create My Account</button>
+
         </form>
 
-        <p>Already have an account?
+        <p class="login-text">
+            Already have an account?
             <a href="login.html">Login here</a>
         </p>
 
-        <a href="index.html">Back to Home</a>
+        <a href="index.html" class="back-home">← Back to Home</a>
+
     </div>
 
     <script src="./script.js?v=2"></script>
+
 </body>
 </html>

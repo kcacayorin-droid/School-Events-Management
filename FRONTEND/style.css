@@ -1,7 +1,3 @@
-
-/* =====================================
-   GENERAL
-===================================== */
 * {
     margin: 0;
     padding: 0;
@@ -23,17 +19,11 @@ button, input, textarea {
     font-family: inherit;
 }
 
-/* =====================================
-   MAIN LAYOUT
-===================================== */
 .app-layout {
     display: flex;
     min-height: 100vh;
 }
 
-/* =====================================
-   SIDEBAR
-===================================== */
 .sidebar {
     width: 255px;
     min-width: 255px;
@@ -133,9 +123,6 @@ button, input, textarea {
     font-size: 11px;
 }
 
-/* =====================================
-   MAIN CONTENT
-===================================== */
 .main-content {
     width: calc(100% - 255px);
     margin-left: 255px;
@@ -143,9 +130,7 @@ button, input, textarea {
     min-width: 0;
 }
 
-/* =====================================
-   TOP BAR
-===================================== */
+
 .topbar {
     display: flex;
     justify-content: space-between;
@@ -190,9 +175,6 @@ button, input, textarea {
     font-weight: bold;
 }
 
-/* =====================================
-   WELCOME SECTION
-===================================== */
 .welcome-section {
     background: linear-gradient(120deg, #244d80, #477db7);
     color: white;
@@ -229,9 +211,7 @@ button, input, textarea {
     font-size: 65px;
 }
 
-/* =====================================
-   CONTENT SECTIONS
-===================================== */
+
 .content-section {
     margin-bottom: 38px;
     scroll-margin-top: 25px;
@@ -255,9 +235,6 @@ button, input, textarea {
     font-size: 13px;
 }
 
-/* =====================================
-   DASHBOARD CARDS
-===================================== */
 .dashboard {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -313,9 +290,7 @@ button, input, textarea {
     margin-bottom: 20px;
 }
 
-/* =====================================
-   BUTTONS
-===================================== */
+
 button {
     border: none;
     cursor: pointer;
@@ -351,9 +326,7 @@ button:focus-visible {
     background: #1d3e6b;
 }
 
-/* =====================================
-   EVENT AND ACTIVITY FORMS
-===================================== */
+
 .form-container {
     margin-bottom: 22px;
 }
@@ -437,9 +410,7 @@ textarea {
     display: block;
 }
 
-/* =====================================
-   EVENT AND ACTIVITY LIST
-===================================== */
+
 .event-list {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -489,9 +460,7 @@ textarea {
     color: white;
 }
 
-/* =====================================
-   LOGOUT
-===================================== */
+
 #logoutBtn {
     background: #e45d5d;
     color: white;
@@ -502,9 +471,6 @@ textarea {
     color: white;
 }
 
-/* =====================================
-   FOOTER
-===================================== */
 .footer {
     display: flex;
     justify-content: space-between;
@@ -520,9 +486,7 @@ textarea {
     font-size: 12px;
 }
 
-/* =====================================
-   LOGIN AND REGISTER
-===================================== */
+
 body:has(#loginForm),
 body:has(#registerForm) {
     display: flex;
@@ -540,9 +504,6 @@ body:has(#registerForm) .container {
     text-align: center;
 }
 
-/* =====================================
-   RESPONSIVE DESIGN
-===================================== */
 @media (max-width: 1000px) {
     .dashboard {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -637,5 +598,95 @@ body:has(#registerForm) .container {
 
     .section-heading h2 {
         font-size: 19px;
+    }
+}
+
+/* =====================================
+   3-SLIDE DASHBOARD DESIGN
+===================================== */
+
+.dashboard-slide {
+    display: none;
+    animation: slideFade 0.35s ease;
+}
+
+.dashboard-slide.active-slide {
+    display: block;
+}
+
+@keyframes slideFade {
+    from {
+        opacity: 0;
+        transform: translateX(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* SLIDE NAVIGATION */
+
+.slide-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin: 30px 0;
+    padding: 18px 22px;
+    background: white;
+    border: 1px solid #e5ebf4;
+    border-radius: 13px;
+}
+
+.slide-navigation button {
+    background: #315b91;
+    color: white;
+    padding: 12px 22px;
+}
+
+.slide-navigation button:hover {
+    background: #17345f;
+}
+
+.slide-navigation button:disabled {
+    background: #cbd5e1;
+    cursor: not-allowed;
+}
+
+.slide-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.slide-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #d5deeb;
+}
+
+.slide-dot.active {
+    width: 25px;
+    border-radius: 10px;
+    background: #315b91;
+}
+
+.slide-count {
+    color: #64748b;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+@media (max-width: 480px) {
+    .slide-navigation {
+        padding: 12px;
+        gap: 8px;
+    }
+
+    .slide-navigation button {
+        padding: 10px 13px;
+        font-size: 12px;
     }
 }
