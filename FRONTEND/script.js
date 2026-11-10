@@ -1,7 +1,7 @@
 
-const API_URL = "http://127.0.0.1:5000/api/auth";
-const EVENTS_URL = "http://127.0.0.1:5000/api/events";
-const ACTIVITIES_URL = "http://127.0.0.1:5000/api/activities";
+const API_URL = "https://school-events-backend.onrender.com/api/auth";
+const EVENTS_URL = "https://school-events-backend.onrender.com/api/events";
+const ACTIVITIES_URL = "https://school-events-backend.onrender.com/api/activities";
 
 // REGISTER
 const registerForm = document.getElementById("registerForm");
