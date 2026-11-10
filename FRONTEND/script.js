@@ -1,6 +1,7 @@
 
 const API_URL = "http://127.0.0.1:5000/api/auth";
 const EVENTS_URL = "http://127.0.0.1:5000/api/events";
+const ACTIVITIES_URL = "http://127.0.0.1:5000/api/activities";
 
 // REGISTER
 const registerForm = document.getElementById("registerForm");
@@ -110,18 +111,31 @@ document.getElementById("manageEventsBtn")?.addEventListener("click", function()
     });
 });
 
+// VIEW ACTIVITIES BUTTON
 document.getElementById("activitiesBtn")?.addEventListener("click", function() {
-    document.getElementById("activitiesSection")?.scrollIntoView({
+    document.getElementById("activitiesListSection")?.scrollIntoView({
         behavior: "smooth"
     });
 });
 
-// EVENT ELEMENTS
+// SIDEBAR ACTIVITIES LINK
+document.querySelector('a[href="#activitiesListSection"]')?.addEventListener("click", function(event) {
+    event.preventDefault();
+
+    document.getElementById("activitiesListSection")?.scrollIntoView({
+        behavior: "smooth"
+    });
+});
+
+// =====================================
+// EVENTS
+// =====================================
+
 const eventForm = document.getElementById("eventForm");
 const eventList = document.getElementById("eventList");
 const searchEvent = document.getElementById("searchEvent");
 
-// LOAD AND DISPLAY EVENTS
+// LOAD EVENTS
 async function loadEvents() {
     if (!eventList) return;
 
@@ -184,7 +198,7 @@ async function loadEvents() {
             organizer.textContent =
                 "Organizer: " + (event.organizer || "Not specified");
 
-            // EDIT BUTTON
+            // EDIT EVENT
             const editBtn = document.createElement("button");
             editBtn.textContent = "Edit Event";
 
@@ -247,7 +261,7 @@ async function loadEvents() {
                 }
             });
 
-            // DELETE BUTTON
+            // DELETE EVENT
             const deleteBtn = document.createElement("button");
             deleteBtn.textContent = "Delete Event";
 
@@ -301,7 +315,7 @@ if (searchEvent) {
     searchEvent.addEventListener("input", loadEvents);
 }
 
-// ADD NEW EVENT
+// ADD EVENT
 if (eventForm) {
     eventForm.addEventListener("submit", async function(event) {
         event.preventDefault();
@@ -350,5 +364,257 @@ if (eventForm) {
     });
 }
 
+// =====================================
+// SCHOOL ACTIVITIES
+// =====================================
+
+const activityForm = document.getElementById("activityForm");
+const activityList = document.getElementById("activityList");
+const searchActivity = document.getElementById("searchActivity");
+
+// LOAD ACTIVITIES
+async function loadActivities() {
+    if (!activityList) return;
+
+    try {
+        const response = await fetch(ACTIVITIES_URL);
+
+        if (!response.ok) {
+            throw new Error("Failed to load activities. Status: " + response.status);
+        }
+
+        const activities = await response.json();
+
+        activityList.replaceChildren();
+
+        if (!Array.isArray(activities) || activities.length === 0) {
+            activityList.textContent = "No activities available yet.";
+            return;
+        }
+
+        const searchText = searchActivity
+            ? searchActivity.value.toLowerCase().trim()
+            : "";
+
+        const filteredActivities = activities.filter(function(activity) {
+            const title = (activity.title || "").toLowerCase();
+            const location = (activity.location || "").toLowerCase();
+
+            return title.includes(searchText) ||
+                   location.includes(searchText);
+        });
+
+        if (filteredActivities.length === 0) {
+            activityList.textContent = "No matching activities found.";
+            return;
+        }
+
+        filteredActivities.forEach(function(activity) {
+            const card = document.createElement("div");
+            card.className = "event-card";
+
+            const title = document.createElement("h3");
+            title.textContent = activity.title || "Untitled Activity";
+
+            const description = document.createElement("p");
+            description.textContent =
+                "Description: " + (activity.description || "No description");
+
+            const date = document.createElement("p");
+            date.textContent = "Date: " + (
+                activity.date
+                    ? new Date(activity.date).toLocaleDateString()
+                    : "No date"
+            );
+
+            const location = document.createElement("p");
+            location.textContent =
+                "Location: " + (activity.location || "Not specified");
+
+            const organizer = document.createElement("p");
+            organizer.textContent =
+                "Organizer: " + (activity.organizer || "Not specified");
+
+            // EDIT ACTIVITY
+            const editBtn = document.createElement("button");
+            editBtn.textContent = "Edit Activity";
+
+            editBtn.addEventListener("click", async function() {
+                const newTitle = prompt(
+                    "Enter new activity title:",
+                    activity.title || ""
+                );
+
+                if (newTitle === null || !newTitle.trim()) return;
+
+                const newDescription = prompt(
+                    "Enter new description:",
+                    activity.description || ""
+                );
+
+                if (newDescription === null) return;
+
+                const newDate = prompt(
+                    "Enter new date (YYYY-MM-DD):",
+                    activity.date ? activity.date.substring(0, 10) : ""
+                );
+
+                if (newDate === null || !newDate.trim()) return;
+
+                const newLocation = prompt(
+                    "Enter new location:",
+                    activity.location || ""
+                );
+
+                if (newLocation === null || !newLocation.trim()) return;
+
+                const newOrganizer = prompt(
+                    "Enter new organizer:",
+                    activity.organizer || ""
+                );
+
+                if (newOrganizer === null) return;
+
+                try {
+                    const response = await fetch(
+                        `${ACTIVITIES_URL}/${activity._id}`,
+                        {
+                            method: "PUT",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify({
+                                title: newTitle.trim(),
+                                description: newDescription,
+                                date: newDate,
+                                location: newLocation.trim(),
+                                organizer: newOrganizer
+                            })
+                        }
+                    );
+
+                    const data = await response.json();
+
+                    if (!response.ok) {
+                        alert(data.message || "Failed to update activity.");
+                        return;
+                    }
+
+                    alert("Activity updated successfully!");
+                    loadActivities();
+
+                } catch (error) {
+                    console.error("EDIT ACTIVITY ERROR:", error);
+                    alert("Cannot connect to server.");
+                }
+            });
+
+            // DELETE ACTIVITY
+            const deleteBtn = document.createElement("button");
+            deleteBtn.textContent = "Delete Activity";
+
+            deleteBtn.addEventListener("click", async function() {
+                if (!confirm("Are you sure you want to delete this activity?")) {
+                    return;
+                }
+
+                try {
+                    const response = await fetch(
+                        `${ACTIVITIES_URL}/${activity._id}`,
+                        {
+                            method: "DELETE"
+                        }
+                    );
+
+                    const data = await response.json();
+
+                    if (!response.ok) {
+                        alert(data.message || "Failed to delete activity.");
+                        return;
+                    }
+
+                    alert("Activity deleted successfully!");
+                    loadActivities();
+
+                } catch (error) {
+                    console.error("DELETE ACTIVITY ERROR:", error);
+                    alert("Cannot connect to server.");
+                }
+            });
+
+            card.append(
+                title,
+                description,
+                date,
+                location,
+                organizer,
+                editBtn,
+                deleteBtn
+            );
+
+            activityList.appendChild(card);
+        });
+
+    } catch (error) {
+        console.error("LOAD ACTIVITIES ERROR:", error);
+        activityList.textContent = "Unable to load activities.";
+    }
+}
+
+// SEARCH ACTIVITIES
+if (searchActivity) {
+    searchActivity.addEventListener("input", loadActivities);
+}
+
+// ADD ACTIVITY
+if (activityForm) {
+    activityForm.addEventListener("submit", async function(event) {
+        event.preventDefault();
+
+        const title = document.getElementById("activityTitle").value;
+        const description = document.getElementById("activityDescription").value;
+        const date = document.getElementById("activityDate").value;
+        const location = document.getElementById("activityLocation").value;
+        const organizer = document.getElementById("activityOrganizer").value;
+
+        try {
+            const response = await fetch(`${ACTIVITIES_URL}/add`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    title,
+                    description,
+                    date,
+                    location,
+                    organizer
+                })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                alert(data.message || "Failed to add activity.");
+                return;
+            }
+
+            alert("Activity added successfully!");
+            activityForm.reset();
+
+            if (searchActivity) {
+                searchActivity.value = "";
+            }
+
+            loadActivities();
+
+        } catch (error) {
+            console.error("ADD ACTIVITY ERROR:", error);
+            alert("Cannot connect to server.");
+        }
+    });
+}
+
 // INITIAL LOAD
 loadEvents();
+loadActivities();
