@@ -1,57 +1,86 @@
+
 <!-- SCHOOL ACTIVITIES -->
 <section class="content-section" id="activitiesListSection">
 
     <div class="section-heading">
         <div>
             <h2>School Activities</h2>
-            <p>Add, view, search, and manage school activities.</p>
+            <p>Manage and organize all school activities in one place.</p>
         </div>
     </div>
 
-    <!-- ADD ACTIVITY FORM -->
-    <form id="activityForm" class="event-form">
-        <div class="form-grid">
+    <!-- ADD ACTIVITY -->
+    <div class="form-container">
+        <h3>Add New Activity</h3>
 
-            <div class="form-group">
-                <label for="activityTitle">Activity Title</label>
-                <input type="text" id="activityTitle"
-                    placeholder="Enter activity title" required>
+        <form id="activityForm" class="event-form">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label for="activityTitle">Activity Title</label>
+                    <input
+                        type="text"
+                        id="activityTitle"
+                        placeholder="Enter activity title"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="activityDate">Activity Date</label>
+                    <input
+                        type="date"
+                        id="activityDate"
+                        required
+                    >
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="activityDescription">Description</label>
+                    <textarea
+                        id="activityDescription"
+                        placeholder="Enter activity description"
+                    ></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="activityLocation">Location</label>
+                    <input
+                        type="text"
+                        id="activityLocation"
+                        placeholder="Enter location"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="activityOrganizer">Organizer</label>
+                    <input
+                        type="text"
+                        id="activityOrganizer"
+                        placeholder="Enter organizer name"
+                    >
+                </div>
+
             </div>
 
-            <div class="form-group">
-                <label for="activityDate">Activity Date</label>
-                <input type="date" id="activityDate" required>
-            </div>
+            <button type="submit" class="submit-btn">
+                + Add Activity
+            </button>
 
-            <div class="form-group full-width">
-                <label for="activityDescription">Description</label>
-                <textarea id="activityDescription"
-                    placeholder="Enter activity description"></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="activityLocation">Location</label>
-                <input type="text" id="activityLocation"
-                    placeholder="Enter location" required>
-            </div>
-
-            <div class="form-group">
-                <label for="activityOrganizer">Organizer</label>
-                <input type="text" id="activityOrganizer"
-                    placeholder="Enter organizer name">
-            </div>
-
-        </div>
-
-        <button type="submit" class="submit-btn">
-            + Add Activity
-        </button>
-    </form>
+        </form>
+    </div>
 
     <!-- SEARCH ACTIVITIES -->
-    <input type="text" id="searchActivity"
-        class="search-input"
-        placeholder="Search activities by title or location...">
+    <div class="activity-search">
+        <input
+            type="text"
+            id="searchActivity"
+            class="search-input"
+            placeholder="Search activities by title or location..."
+        >
+    </div>
 
     <!-- ACTIVITY LIST -->
     <div id="activityList" class="event-list">
