@@ -45,7 +45,7 @@ router.post("/add", async (req, res) => {
         });
     }
 });
-// DELETE EVENT
+
 router.delete("/:id", async (req, res) => {
     try {
         const deletedEvent = await Event.findByIdAndDelete(req.params.id);
@@ -67,7 +67,7 @@ router.delete("/:id", async (req, res) => {
         });
     }
 });
-// EDIT EVENT
+
 router.put("/:id", async (req, res) => {
     try {
         const { title, description, date, location, organizer } = req.body;

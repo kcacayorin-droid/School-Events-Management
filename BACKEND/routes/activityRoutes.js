@@ -3,7 +3,7 @@ const Activity = require("../models/Activity");
 
 const router = express.Router();
 
-// GET ALL ACTIVITIES
+
 router.get("/", async (req, res) => {
     try {
         const activities = await Activity.find().sort({ date: 1 });
@@ -16,7 +16,7 @@ router.get("/", async (req, res) => {
     }
 });
 
-// ADD ACTIVITY
+
 router.post("/add", async (req, res) => {
     try {
         const { title, description, date, location, organizer } = req.body;
@@ -49,7 +49,7 @@ router.post("/add", async (req, res) => {
     }
 });
 
-// EDIT ACTIVITY
+
 router.put("/:id", async (req, res) => {
     try {
         const { title, description, date, location, organizer } = req.body;
@@ -78,7 +78,7 @@ router.put("/:id", async (req, res) => {
     }
 });
 
-// DELETE ACTIVITY
+
 router.delete("/:id", async (req, res) => {
     try {
         const deletedActivity = await Activity.findByIdAndDelete(req.params.id);
