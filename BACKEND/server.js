@@ -1,23 +1,23 @@
 require("dotenv").config();
 
-const express = require("express");
+const express = require("express");const connectDB = require("./config/db");
 const cors = require("cors");
-const connectDB = require("./config/db");
+
 const authRoutes = require("./routes/authRoutes");
 const eventRoutes = require("./routes/eventRoutes");
-const activityRoutes = require("./routes/ActivityRoutes");
+const activityRoutes = require("./routes/activityRoutes");
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-// HOME ROUTE
+
 app.get("/", (req, res) => {
     res.send("School Events Management API is Running!");
 });
 
-// API ROUTES
+
 app.use("/api/auth", authRoutes);
 app.use("/api/events", eventRoutes);
 app.use("/api/activities", activityRoutes);
